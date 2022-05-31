@@ -1,13 +1,6 @@
-.PHONY: all deps gometalinter test cover
+.PHONY: all test cover
 
-all: gometalinter test cover
-
-deps:
-	go get -u github.com/alecthomas/gometalinter
-	gometalinter --install
-
-gometalinter:
-	gometalinter --vendor --deadline=1m --tests --enable-all
+all: test cover
 
 test:
 	go test -v -race -cpu=1,2,4 -coverprofile=coverage.txt -covermode=atomic -benchmem -bench .
